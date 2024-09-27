@@ -1,4 +1,4 @@
-# Rocket-Landing
+# Thrust to Land
 A fun and challenging physics-based game where players control a rocket and must guide it to a safe landing without colliding with any obstacles. 
 The objective is to carefully maneuver the rocket to land on the marked destination while avoiding walls, obstacles, or any hazardous elements in the environment.
 
