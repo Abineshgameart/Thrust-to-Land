@@ -1,10 +1,12 @@
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
     // Parivate
     AudioSource audioSource;
+    CinemachineVirtualCamera virtualCamera;  // Add this
 
     [SerializeField] float levelLoadDelay = 3f;
     [SerializeField] AudioClip CrashingAudio;
@@ -19,6 +21,7 @@ public class CollisionHandler : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        virtualCamera = FindObjectOfType<CinemachineVirtualCamera>(); // Find the virtual camera
     }
 
     private void Update()
@@ -71,6 +74,9 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(CrashingAudio);
         GetComponent<Movement>().enabled = false;
+        virtualCamera.Follow = null;  // Detach the camera from following the player
+        virtualCamera.LookAt = null;  // Detach the camera from looking at the player
+
         Invoke("ReloadLevel", levelLoadDelay);
     }
 
