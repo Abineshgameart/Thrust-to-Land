@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     // Private
     Rigidbody rb;
     AudioSource audioSource;
+    [SerializeField]ParticleSystem particleMain;
 
     [SerializeField] float mainThrust = 100;
     [SerializeField] float rotationThrust = 1f;
@@ -22,6 +23,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -38,11 +40,13 @@ public class Movement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
             if (!audioSource.isPlaying)
             {
+                particleMain.Play();
                 audioSource.PlayOneShot(mainEngine);
             }
         }
         else
         {
+            particleMain.Stop();
             audioSource.Stop();
         }
         
