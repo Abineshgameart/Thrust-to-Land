@@ -11,6 +11,8 @@ public class CollisionHandler : MonoBehaviour
     AudioSource audioSource;
     CinemachineVirtualCamera virtualCamera;  // Add this
     [SerializeField]ParticleSystem particleMain;
+    [SerializeField]ParticleSystem blastParticle;
+    [SerializeField]ParticleSystem successParticle;
     
 
     [SerializeField] float levelLoadDelay = 3f;
@@ -137,6 +139,7 @@ public class CollisionHandler : MonoBehaviour
 
     void StartSuccessSequence()
     {
+        successParticle.Play();
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(FinishAudio);
@@ -145,6 +148,7 @@ public class CollisionHandler : MonoBehaviour
     }
     void StartCrashSequence()
     {
+        blastParticle.Play();
         isTransitioning = true;
         particleMain.Stop();
         audioSource.Stop();
